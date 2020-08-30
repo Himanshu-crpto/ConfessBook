@@ -29,7 +29,6 @@ In a new terminal tab,
 $ mongo
 ```
 
-
 Visit my website :-
 
 <b>[https://thekushalghosh.github.io](https://thekushalghosh.github.io)<b>
