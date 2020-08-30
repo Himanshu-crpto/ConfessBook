@@ -19,13 +19,13 @@ $ npm install
 $ node app.js
 ```
 
-To initiate MongoDB server, install [MongoDB](https://mongodb.com)
+To initiate MongoDB server, install [MongoDB](https://mongodb.com), and then,
 
 ```sh
 $ mongod
 ```
 In a new terminal tab,
-```
+```sh
 $ mongo
 ```
 
