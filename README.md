@@ -1,5 +1,5 @@
-<h1>Confessions Web-App</h1>
-This Web-App actually helps you to confess your secrets.<br>
+<h1>ConfessBook</h1>
+This is basically a confessions Web-App which actually helps you to confess your secrets.<br>
 
 The user has to signup, either manually or using Google.<br>
 The user's credentials are authenticated and encrypted.<br>
