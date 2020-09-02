@@ -8,7 +8,7 @@ Then he/she can post confessions anonymously.<br>
 The user can also view other's confessions on his/her feed, without actually knowing who confessed them.<br>
 
 The user can logout and login whenever he/she wants later on, either manually or with Google.<br>
-The user's sessions are saved unless he/she logs out and doesn't need to sign in everytime the website is opened.
+The user doesn't need to sign in everytime the website is opened, as the sessions are saved unless he/she logs out.
 
 Confessions requires [Node.js](https://nodejs.org/) v4+ to run.
 Install the dependencies and start the server.
