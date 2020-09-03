@@ -15,6 +15,7 @@ Install the dependencies and start the server.
 
 ```sh
 $ cd Confessions
+$ npm init
 $ npm install
 $ node app.js
 ```
