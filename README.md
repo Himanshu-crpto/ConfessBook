@@ -5,7 +5,7 @@ The user has to signup, either manually or using Google.<br>
 The user's credentials are authenticated and encrypted.<br>
 
 Then he/she can post confessions anonymously.<br>
-The user can also view other's confessions on his/her feed, without actually knowing who confessed them.<br>
+The user can also view other's confessions on his/her news feed, without actually knowing who confessed them.<br>
 
 The user can logout and login whenever he/she wants later on, either manually or with Google.<br>
 The user doesn't need to sign in everytime the website is opened, as the sessions are saved unless he/she logs out.
