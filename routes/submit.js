@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-router.get("/submit", function(req, res){
+router.get("/submit", (req, res)=>{
     if (req.isAuthenticated()){
       res.render("submit");
     } else {
@@ -8,15 +8,15 @@ router.get("/submit", function(req, res){
     }
   });
   
-router.post("/submit", function(req, res){
+router.post("/submit", (req, res)=>{
     const submittedSecret = req.body.secret;
-    User.findById(req.user.id, function(err, foundUser){
+    User.findById(req.user.id, (err, foundUser)=>{
         if (err) {
         console.log(err);
         } else {
         if (foundUser) {
             foundUser.secret.push(submittedSecret);
-            foundUser.save(function(){
+            foundUser.save(()=>{
             res.redirect("/secrets");
             });
         }
