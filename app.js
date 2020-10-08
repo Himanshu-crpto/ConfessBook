@@ -84,14 +84,6 @@ app.get("/auth/google/secrets",
     res.redirect("/secrets");
   });
 
-app.get("/login", function(req, res){
-  res.render("login");
-});
-
-app.get("/register", function(req, res){
-  res.render("register");
-});
-
 app.get("/secrets", function(req, res){
   User.find({"secret": {$ne: null}}, function(err, foundUsers){
     if (err){
@@ -104,73 +96,17 @@ app.get("/secrets", function(req, res){
   });
 });
 
-app.get("/submit", function(req, res){
-  if (req.isAuthenticated()){
-    res.render("submit");
-  } else {
-    res.redirect("/login");
-  }
-});
+const loginRoute = require('./routes/login.js');
+const logoutRoute = require('./routes/logout.js');
+const registerRoute = require('./routes/register.js');
+const submitRoute = require('./routes/submit.js');
 
-app.post("/submit", function(req, res){
-  const submittedSecret = req.body.secret;
-
-
-
-  User.findById(req.user.id, function(err, foundUser){
-    if (err) {
-      console.log(err);
-    } else {
-      if (foundUser) {
-        foundUser.secret.push(submittedSecret);
-        foundUser.save(function(){
-          res.redirect("/secrets");
-        });
-      }
-    }
-  });
-});
-
-app.get("/logout", function(req, res){
-  req.logout();
-  res.redirect("/");
-});
-
-app.post("/register", function(req, res){
-
-  User.register({username: req.body.username}, req.body.password, function(err, user){
-    if (err) {
-      console.log(err);
-      res.redirect("/register");
-    } else {
-      passport.authenticate("local")(req, res, function(){
-        res.redirect("/secrets");
-      });
-    }
-  });
-
-});
-
-app.post("/login", function(req, res){
-
-  const user = new User({
-    username: req.body.username,
-    password: req.body.password
-  });
-
-  req.login(user, function(err){
-    if (err) {
-      console.log(err);
-    } else {
-      passport.authenticate("local")(req, res, function(){
-        res.redirect("/secrets");
-      });
-    }
-  });
-
-});
-
+app.use(loginRoute);
+app.use(logoutRoute);
+app.use(registerRoute);
+app.use(submitRoute);
 
 app.listen(3000, function() {
   console.log("Server started on port 3000.");
 });
+
