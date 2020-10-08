@@ -1,19 +1,19 @@
 const router = require('express').Router();
 
-router.get("/login", function(req, res){
+router.get("/login", (req, res)=>{
     res.render("login");
   });
 
-router.post("/login", function(req, res){
+router.post("/login", (req, res)=>{
     const user = new User({
       username: req.body.username,
       password: req.body.password
     });
-    req.login(user, function(err){
+    req.login(user, (err)=>{
       if (err) {
         console.log(err);
       } else {
-        passport.authenticate("local")(req, res, function(){
+        passport.authenticate("local")(req, res, ()=>{
           res.redirect("/secrets");
         });
       }

@@ -45,12 +45,12 @@ const User = new mongoose.model("User", userSchema);
 
 passport.use(User.createStrategy());
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser((user, done)=> {
   done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
+passport.deserializeUser((id, done)=> {
+  User.findById(id, (err, user)=> {
     done(err, user);
   });
 });
@@ -61,16 +61,16 @@ passport.use(new GoogleStrategy({
     callbackURL: "http://localhost:3000/auth/google/secrets",
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
   },
-  function(accessToken, refreshToken, profile, cb) {
+  (accessToken, refreshToken, profile, cb)=> {
     console.log(profile);
 
-    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+    User.findOrCreate({ googleId: profile.id }, (err, user)=> {
       return cb(err, user);
     });
   }
 ));
 
-app.get("/", function(req, res){
+app.get("/", (req, res)=>{
   res.render("home");
 });
 
@@ -80,13 +80,13 @@ app.get("/auth/google",
 
 app.get("/auth/google/secrets",
   passport.authenticate('google', { failureRedirect: "/login" }),
-  function(req, res) {
+  (req, res)=> {
     // Successful authentication, redirect to secrets.
     res.redirect("/secrets");
   });
 
-app.get("/secrets", function(req, res){
-  User.find({"secret": {$ne: null}}, function(err, foundUsers){
+app.get("/secrets", (req, res)=>{
+  User.find({"secret": {$ne: null}}, (err, foundUsers)=>{
     if (err){
       console.log(err);
     } else {
@@ -107,7 +107,7 @@ app.use(logoutRoute);
 app.use(registerRoute);
 app.use(submitRoute);
 
-app.listen(secret.port, function() {
+app.listen(secret.port, ()=> {
   console.log(`Server started on ${secret.port}`);
 });
 
