@@ -9,6 +9,7 @@ const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
+const secret = require('./config/secret.js');
 
 const app = express();
 
@@ -106,7 +107,7 @@ app.use(logoutRoute);
 app.use(registerRoute);
 app.use(submitRoute);
 
-app.listen(3000, function() {
-  console.log("Server started on port 3000.");
+app.listen(secret.port, function() {
+  console.log(`Server started on ${secret.port}`);
 });
 
